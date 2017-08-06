@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <script>
+$form = $("#submit-form"); 
+$form.on("submit",function()
+{
+   alert("submitting..");
+   //do ajax
+   $.ajax({
+       url:<submit url>,
+       type:post,
+       success:function() {
+           location.reload();
+       }
+   });
+});
+$form.submit();
+</script>
+  </head>
+</html>
+
+<body>
+<div class="container fill">
+<div class="col-offset-6">
+<h2>로그인</h2>
+
+
+
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field">
+    <%= f.label :이메일 %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :비밀번호 %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <% if devise_mapping.rememberable? -%>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      <%= f.label :이메일저장 %>
+    </div>
+  <% end -%>
+
+  <div class="actions">
+    <%= f.submit "로그인" %>
+  </div>
+<% end %>
+
+<%= render "users/shared/links" %>
+</body>

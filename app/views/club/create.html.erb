@@ -1,0 +1,113 @@
+<!-- 동아리 등록페이지 -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> 동아리 등록 </title>
+    </head>
+    <body>
+        <filedset>
+            <legend>작성하기</legend>
+            <form action="/club/create_done">
+                <strong>동아리명</strong>
+                <input type="text" name="name" /><br>
+                
+                <strong>동아리소속</strong><br>
+                <input type="radio" name="belonging" value="중앙동아리" onClick="div_dept(this.value,'belonging_dept')" > 중앙동아리
+                <input type="radio" name="belonging" value="애기능동아리" onClick="div_dept(this.value,'belonging_dept')"> 애기능동아리
+                <input type="radio" name="belonging" value="운동부" onclick="div_dept(this.value,'belonging_dept')"> 운동부
+                <input type="radio" name="belonging" value="단과대학소속" onclick="div_dept(this.value,'belonging_dept')"> 단과대학소속
+                    <div id="belonging_dept" style="display:none">
+                        <br> <input type="radio" name="belonging_dept" value="법과대학"> 법과대학
+                        <input type="radio" name="belonging_dept" value="경영대학"> 경영대학
+                        <input type="radio" name="belonging_dept" value="문과대학"> 문과대학
+                        <input type="radio" name="belonging_dept" value="생명과학대학"> 생명과학대학
+                        <input type="radio" name="belonging_dept" value="정경대학"> 정경대학
+                        <input type="radio" name="belonging_dept" value="이과대학"> 이과대학
+                        <input type="radio" name="belonging_dept" value="공과대학"> 공과대학
+                        <input type="radio" name="belonging_dept" value="의과대학"> 의과대학
+                        <input type="radio" name="belonging_dept" value="사범대학"> 사범대학
+                        <input type="radio" name="belonging_dept" value="간호대학"> 간호대학
+                        <input type="radio" name="belonging_dept" value="보건과학대학"> 보건과학대학
+                        <input type="radio" name="belonging_dept" value="정보대학"> 정보대학
+                        <input type="radio" name="belonging_dept" value="디자인조형학부"> 디자인조형학부
+                        <input type="radio" name="belonging_dept" value="국제학부"> 국제학부
+                        <input type="radio" name="belonging_dept" value="미디어학부"> 미디어학부
+                        <input type="radio" name="belonging_dept" value="자유전공학부"> 자유전공학부 <br>
+                    </div>
+                <input type="radio" name="belonging" value="기타" onclick="div_dept(this.value,'belonging_dept')"> 기타 <input type="text" name="belonging_text"/><br>
+                
+                <strong>분과</strong><br>
+                <input type="radio" name="cat" value="예술"> 예술
+                <input type="radio" name="cat" value="학문"> 학문
+                <input type="radio" name="cat" value="사회"> 사회
+                <input type="radio" name="cat" value="문화"> 문화
+                <input type="radio" name="cat" value="언어"> 언어
+                <input type="radio" name="cat" value="종교"> 종교
+                <input type="radio" name="cat" value="체육"> 체육
+                <br>
+                
+                <strong>학과제한</strong><br>
+                <input type="radio" name="limit_deptm" value="있음"> 있음 
+                <input type="radio" name="limit_deptm" value="없음"> 없음
+                <br>
+                
+                <strong>학번제한</strong><br>
+                <input type="radio" name="limit_stunum" value="신입생만 가능" onClick="this.form.limit_stunum_text.hidden=true"> 신입생만 가능
+                <input type="radio" name="limit_stunum" value="없음" onClick="this.form.limit_stunum_text.hidden=true"> 없음
+                <input type="radio" name="limit_stunum" value="기타" onClick="this.form.limit_stunum_text.hidden=false"> 기타 <input type="text" name="limit_stunum_text" hidden/><br>
+                
+                <strong>필수활동기간</strong><br>
+                <input type="radio" name="mustdo" value="없음" onClick="this.form.mustdo_text.hidden=true"> 없음
+                <input type="radio" name="mustdo" value="한 학기 이상" onClick="this.form.mustdo_text.hidden=true"> 한 학기 이상 
+                <input type="radio" name="mustdo" value="두 학기 이상" onClick="this.form.mustdo_text.hidden=true"> 두 학기 이상
+                <input type="radio" name="mustdo" value="기타" onClick="this.form.mustdo_text.hidden=false" > 기타 
+                <input type="text" name="mustdo_text" hidden/> <br>
+                
+                <strong>활동빈도</strong><br>
+                <input type="radio" name="freq" value="자유" onClick="this.form.freq_text.hidden=true"> 자유
+                <input type="radio" name="freq" value="주 1회 필수" onClick="this.form.freq_text.hidden=true"> 주 1회 필수
+                <input type="radio" name="freq" value="주 2회 필수" onClick="this.form.freq_text.hidden=true"> 주 2회 필수
+                <input type="radio" name="freq" value="주 3회 필수" onClick="this.form.freq_text.hidden=true"> 주 3회 필수
+                <input type="radio" name="freq" value="기타" onClick="this.form.freq_text.hidden=false"> 기타 <input type="text" name="freq_text" hidden/> <br>
+                
+                <strong>창설연도</strong>
+                <input type="number" name="estab" /><br><br>
+                
+                <strong>동아리 설명</strong><br>
+                <textarea name="cont"></textarea>
+                <br>
+                
+                <input type="submit" value="등록" />
+                
+            </form>
+            
+        </filedset>
+        
+        
+    </body>
+    
+
+<!-- 스크립트 시작 -->
+<script>
+    
+    function div_dept(v,id){
+        // 라디오 버튼 value 값 조건 비교
+        if(v == "단과대학소속"){
+        document.getElementById(id).style.display = ""; // 보여줌
+        }else{
+        document.getElementById(id).style.display = "none"; // 숨김
+        }
+    }
+    
+    
+    
+</script>
+<!-- 스크립트 끝 -->
+
+    
+</html>
+
+
+

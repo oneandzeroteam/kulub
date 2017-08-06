@@ -1,0 +1,241 @@
+
+
+<html>
+<head>
+<style>
+h2{
+  text-align: center;
+}
+
+ td, th {
+  text-align: center;
+  padding: 10px 40px 20px 20px
+  }
+
+  .calendarBox{
+    float:left; width: 100%
+  }
+  .calendar{
+    float:left; width: 80%;
+  }
+  .wantToSeeList{
+    position:fixed;
+    float:right;
+    top: 100px;
+    right: 150px;
+    width:10%;
+  }
+  dl {
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+dd {
+    display: block;
+    -webkit-margin-start: 40px;
+}
+.popup .cal_pop_name{
+  font-size:14pt;
+  font-weight:bold;
+}
+.popup .cal_pop {
+    position: relative;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #d9d9d9 #bfbfbf #b6b6b6 #d5d5d5;
+    background: #fff;
+    box-shadow: 1px 2px 1px rgba(0,0,0,0.1);
+}
+.popup .cal_pop_wrap{
+  visibility:hidden;
+  position:absolute;
+}
+
+.popup .show{
+  visibility:visible;
+}
+.popup{
+  
+}
+
+</style>
+</head>
+
+<body>
+     <!-- calendar -->
+     <div>
+
+          <div>
+            <h2>MY CALENDAR</h2>
+          </div>
+
+          <!--월별달력보기
+          <div>
+            <table>
+              <caption>2016년</caption>
+              <tr>
+                <td><a href="">1월</a></td>
+                <td><a href="">2월</a></td>
+                <td><a href="">3월</a></td>
+                <td><a href="">4월</a></td>
+                <td><a href="">5월</a></td>
+                <td><a href="">6월</a></td>
+                <td><a href="">7월</a></td>
+                <td><a href="">8월</a></td>
+                <td><a href="">9월</a></td>
+                <td><a href="">10월</a></td>
+                <td><a href="">11월</a></td>
+                <td><a href="">12월</a></td>
+              </tr>
+            </table>
+          </div>
+        -->
+
+        <div>
+
+          <div class=calendarBox>
+            <p>
+              <a href="calendar.html">CALENDAR</a>
+              <a href="calendar_recruit.html">리크루팅</a>
+              <a href="calendar_event.html"><strong>행사</strong></a>
+          </p>
+      		<table  class=calendar>
+            <caption><strong>August 2017</strong></caption>
+                  <thead>
+                      <tr>
+                          <th>SUN</th>
+                          <th>MON</th>
+                          <th>TUE</th>
+                          <th>WED</th>
+                          <th>THU</th>
+                          <th>FRI</th>
+                          <th>SAT</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>29</td>
+                          <td>30</td>
+                          <td>31</td>
+                          <td>1</td>
+                          <td>2</td>
+                          <td>3</td>
+                          <td>4</td>
+                      </tr>
+                      <tr>
+                          <td onClick="clicked(this)">5</td>
+                          <td onClick="clicked(this)">6</td>
+                          <td onClick="clicked(this)">7</td>
+                          <td onClick="clicked(this)">8</td>
+                          <td onClick="clicked(this)">9</td>
+                          <td onClick="clicked(this)">10</td>
+                          <td onClick="clicked(this)">11</td>
+                      </tr>
+                      <tr>
+                          <td>12</td>
+                          <td>13</td>
+                          <td>14</td>
+                          <td>15</td>
+                          <td>16</td>
+                          <td>17</td>
+                          <td>18</td>
+                      </tr>
+                      <tr>
+                          <td>19</td>
+                          <td>
+                            <strong>20</strong>
+                            <div>
+                              <div class = "info">
+                                <span class ="who">
+                                  하나와영
+                                </span>
+                                <a class="popup" onClick="popdetail()">캠프</a>
+                                
+                              </div>
+                            </div>
+                          </td>
+                          <td>21</td>
+                          <td>22</td>
+                          <td>23</td>
+                          <td>24</td>
+                          <td>25</td>
+                      </tr>
+                      <tr>
+                          <td>26</td>
+                          <td>27</td>
+                          <td>28</td>
+                          <td>29</td>
+                          <td>1</td>
+                          <td>2</td>
+                          <td>3</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+
+
+
+          <!--관심동아리리스트-->
+          <div class=wantToSeeList>
+              <p><strong>관심동아리</strong></p>
+            <div>
+              <label>
+                <span><input type="checkbox"></span>
+                관심동아리 전체
+              </label>
+            </div>
+              <div>
+              <label>
+                <span><input type="checkbox"></span>
+                하나와영
+              </label>
+            </div>
+            <div>
+              <label>
+                <span><input type=checkbox></span>
+                아라리요
+              </label>
+            </div>
+          </div>
+          <!--관심동아리리스트-->
+  </div>
+  
+  <!--스케줄팝업-->
+  <div class="popup">
+  <div class="cal_pop_wrap" id="cal_detail" style="display: block; left: 410px; top: 369px; z-index: 32001;">
+  <div class="cal_pop">
+    <div class="cal_pop_head">
+      <span class="cal_pop_name">하나와영</span>
+    </div>
+    <div class="cal_pop_contents">
+      <dl>
+        <dt>일시</dt>
+        <dd>2017.08.20 04:00 - 2017.9.15 18:00</dd>
+        <dt>장소</dt>
+        <dd>대천수련원</dd>
+        <dt>내용</dt>
+        <dd>코딩</dd>
+      </dl>
+    </div>
+    <div class="cal_pop_foot">
+      <button type="button" onClick="return" style="display:inline;">
+        <strong>상세정보</strong>
+      </button>
+    </div>
+    <div class="cal_pop_bg">
+    </div>
+  </div>  
+  </div>
+  </div>
+  <!--스케줄팝업-->
+  
+  <script>
+     function popdetail(){
+       var popup = document.getElementById("cal_detail");
+      popup.classList.toggle("show");
+     }
+  </script>
+</body>
+</html>

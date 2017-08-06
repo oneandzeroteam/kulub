@@ -1,0 +1,554 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>고려대 동아리</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+  <!-- Bootstrap Core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Theme CSS -->
+  <link href="css/freelancer.min.css" rel="stylesheet">
+
+  <!-- Custom Fonts -->
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  <script language="javascript">
+  <!--
+  function clickshow(num) {
+    for (i=1; i<4; i++) {
+      menu=eval("document.all.block"+i+".style");
+      imgch=eval("document.all.bar"+i);
+      if (num==i) {
+        if (menu.display=="block") {
+          menu.display="none";
+          imgch.innerHTML="─";
+        }
+        else {
+          menu.display="block";
+          imgch.innerHTML="┬";
+        }
+      }
+    }
+  }
+  //-->
+  </script>
+
+  <script>
+
+  	$(document).ready(function() {
+  	    var date = new Date();
+  		var d = date.getDate();
+  		var m = date.getMonth();
+  		var y = date.getFullYear();
+
+  		/*  className colors
+
+  		className: default(transparent), important(red), chill(pink), success(green), info(blue)
+
+  		*/
+
+
+  		/* initialize the external events
+  		-----------------------------------------------------------------*/
+
+  		$('#external-events div.external-event').each(function() {
+
+  			// create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+  			// it doesn't need to have a start or end
+  			var eventObject = {
+  				title: $.trim($(this).text()) // use the element's text as the event title
+  			};
+
+  			// store the Event Object in the DOM element so we can get to it later
+  			$(this).data('eventObject', eventObject);
+
+  			// make the event draggable using jQuery UI
+  			$(this).draggable({
+  				zIndex: 999,
+  				revert: true,      // will cause the event to go back to its
+  				revertDuration: 0  //  original position after the drag
+  			});
+
+  		});
+
+
+  		/* initialize the calendar
+  		-----------------------------------------------------------------*/
+
+  		var calendar =  $('#calendar').fullCalendar({
+  			header: {
+  				left: 'title',
+  				center: 'agendaDay,agendaWeek,month',
+  				right: 'prev,next today'
+  			},
+  			editable: true,
+  			firstDay: 1, //  1(Monday) this can be changed to 0(Sunday) for the USA system
+  			selectable: true,
+  			defaultView: 'month',
+
+  			axisFormat: 'h:mm',
+  			columnFormat: {
+                  month: 'ddd',    // Mon
+                  week: 'ddd d', // Mon 7
+                  day: 'dddd M/d',  // Monday 9/7
+                  agendaDay: 'dddd d'
+              },
+              titleFormat: {
+                  month: 'MMMM yyyy', // September 2009
+                  week: "MMMM yyyy", // September 2009
+                  day: 'MMMM yyyy'                  // Tuesday, Sep 8, 2009
+              },
+  			allDaySlot: false,
+  			selectHelper: true,
+  			select: function(start, end, allDay) {
+  				var title = prompt('Event Title:');
+  				if (title) {
+  					calendar.fullCalendar('renderEvent',
+  						{
+  							title: title,
+  							start: start,
+  							end: end,
+  							allDay: allDay
+  						},
+  						true // make the event "stick"
+  					);
+  				}
+  				calendar.fullCalendar('unselect');
+  			},
+  			droppable: true, // this allows things to be dropped onto the calendar !!!
+  			drop: function(date, allDay) { // this function is called when something is dropped
+
+  				// retrieve the dropped element's stored Event Object
+  				var originalEventObject = $(this).data('eventObject');
+
+  				// we need to copy it, so that multiple events don't have a reference to the same object
+  				var copiedEventObject = $.extend({}, originalEventObject);
+
+  				// assign it the date that was reported
+  				copiedEventObject.start = date;
+  				copiedEventObject.allDay = allDay;
+
+  				// render the event on the calendar
+  				// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+  				$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+
+  				// is the "remove after drop" checkbox checked?
+  				if ($('#drop-remove').is(':checked')) {
+  					// if so, remove the element from the "Draggable Events" list
+  					$(this).remove();
+  				}
+
+  			},
+
+  			events: [
+  				{
+  					title: 'All Day Event',
+  					start: new Date(y, m, 1)
+  				},
+  				{
+  					id: 999,
+  					title: 'Repeating Event',
+  					start: new Date(y, m, d-3, 16, 0),
+  					allDay: false,
+  					className: 'info'
+  				},
+  				{
+  					id: 999,
+  					title: 'Repeating Event',
+  					start: new Date(y, m, d+4, 16, 0),
+  					allDay: false,
+  					className: 'info'
+  				},
+  				{
+  					title: 'Meeting',
+  					start: new Date(y, m, d, 10, 30),
+  					allDay: false,
+  					className: 'important'
+  				},
+  				{
+  					title: 'Lunch',
+  					start: new Date(y, m, d, 12, 0),
+  					end: new Date(y, m, d, 14, 0),
+  					allDay: false,
+  					className: 'important'
+  				},
+  				{
+  					title: 'Birthday Party',
+  					start: new Date(y, m, d+1, 19, 0),
+  					end: new Date(y, m, d+1, 22, 30),
+  					allDay: false,
+  				},
+  				{
+  					title: 'Click for Google',
+  					start: new Date(y, m, 28),
+  					end: new Date(y, m, 29),
+  					url: 'http://google.com/',
+  					className: 'success'
+  				}
+  			],
+  		});
+
+
+  	});
+  	
+  	/*동아리 달력 클릭하면 btn-primary로 바뀌게 왜만들었는지 만들고 보니 모르겠어요*/
+  	function clicked(elem)
+  	{
+  	  if(elem.className!="btn-primary")
+  	  {
+  	    
+  	    elem.className="btn-primary";
+  	  }
+  	   else
+  	   {
+  	     elem.className="";
+  	   }
+  	    
+  	}
+  	
+  	function createClub()
+  	{
+  	  <% if user_signed_in? %>
+  	    <% if current_user.admin? %>
+  	      location.href="/club/create"
+  	    <% else %>
+  	      window.alert("동아리 아이디로만 등록이 가능합니다.")
+  	    <% end %>
+  	  <% else %>
+  	    window.alert("로그인 이후 사용하시기 바랍니다.")
+  	  <% end %>
+  	}
+
+  </script>
+
+  <style>
+  .mn11 {border-top:1 solid #336699; background:#336699; padding:7 5 4 5; color:white; cursor:hand}
+  .mn12 {border-top:1 solid #336699; background:#99ccff; padding:7 5 4 5; color:blue; cursor:hand}
+  .mn21 {border-bottom:1 solid beige; background:beige; padding:3 5; cursor:hand}
+  .mn22 {border-bottom:1 solid #336699; background:#99ccff; padding:3 5; cursor:hand}
+
+
+
+  </style>
+
+</head>
+
+<body id="page-top" class="index">
+  <div class="container">
+    <div clas="col-md-12">
+      <div class="col-md-10">
+     <%= image_tag("main_image.jpg") %>
+    
+    
+      <--고동 로고
+      </div>
+      <div class="col-md-2">
+      <% if user_signed_in? %>
+      <%= current_user.email %>
+     
+      <a href="/users/sign_out"><button>로그아웃</button></a>
+      <% else %>
+      <a href="/users/sign_in"><button>로그인</button></a>
+      <% end %>
+      </div>
+    </div>
+    
+    <div class="col-md-12">
+      <div class="col-sm-11 text-center">
+        <h2>검색창</h2>
+      </div>
+      <div class="col-md-1">
+        <input type="button" onClick="createClub()" value="동아리 등록">
+        <!-- <a href="/club/create"><h4>동아리<br> 등록</h4></a>  -->
+      </div>
+    </div>
+    <div class="row">
+      <!-- menu -->
+      <div class="col-md-3">
+        <table width="200"><tr><td>
+
+          <DIV class="mn11" onmouseout="this.className='mn11'" onmouseover="this.className='mn12'" onclick="clickshow(1)">
+            <span id="bar1">─</span> 단과대별
+          </DIV>
+
+          <DIV id=block1 style="display: none;">
+            <div class="mn21" onmouseout="this.className='mn21'" onmouseover="this.className='mn22'" onClick="location.href='/club/create';">
+              <font color="blue">├─</font> 경영대
+            </div>
+            <div class="mn21" onmouseout="this.className='mn21'" onmouseover="this.className='mn22'" onclick="location.href='http://www.daum.net'">
+              <font color="blue">├─</font> 정경대
+            </div>
+            <div class="mn21" onmouseout="this.className='mn21'" onmouseover="this.className='mn22'">
+              <font color="blue">├─</font> 문과대
+            </div>
+            <div class="mn21" onmouseout="this.className='mn21'" onmouseover="this.className='mn22'">
+              <font color="blue">├─</font> 이과대
+            </div>
+            <div class="mn21" onmouseout="this.className='mn21'" onmouseover="this.className='mn22'">
+              <font color="blue">├─</font> 생명대
+            </div>
+            <div class="mn21" onmouseout="this.className='mn21'" onmouseover="this.className='mn22'">
+              <font color="blue">├─</font> 공대
+            </div>
+            <div class="mn21" onmouseout="this.className='mn21'" onmouseover="this.className='mn22'">
+              <font color="blue">├─</font> 정보대
+            </div>
+            <div class="mn21" onmouseout="this.className='mn21'" onmouseover="this.className='mn22'">
+              <font color="blue">└─</font> 사범대
+            </div>
+          </DIV>
+
+
+          <DIV class="mn11" onmouseout="this.className='mn11'" onmouseover="this.className='mn12'" onclick="clickshow(2)">
+            <span id="bar2">┬</span> 소속별
+          </DIV>
+
+          <DIV id=block2 style="display: block;">
+            <div class="mn21" onmouseout="this.className='mn21'" onmouseover="this.className='mn22'">
+              <font color="blue">├─</font> 중앙동아리
+            </div>
+            <div class="mn21" onmouseout="this.className='mn21'" onmouseover="this.className='mn22'">
+              <font color="blue">├─</font> 애기능동아리
+            </div>
+            <div class="mn21" onmouseout="this.className='mn21'" onmouseover="this.className='mn22'" onclick="location.href='http://www.jasko.co.kr'">
+              <font color="blue">├─</font> 학교동아리
+            </div>
+            <div class="mn21" onmouseout="this.className='mn21'" onmouseover="this.className='mn22'">
+              <font color="blue">└─</font> 운동부동아리
+            </div>
+          </DIV>
+
+
+          <DIV class="mn11" onmouseout="this.className='mn11'" onmouseover="this.className='mn12'" onclick="clickshow(3)">
+            <span id="bar3">─</span> 분야별
+          </DIV>
+
+          <DIV id=block3 style="display: none;">
+            <div class="mn21" onmouseout="this.className='mn21'" onmouseover="this.className='mn22'">
+              <font color="blue">├─</font> IT
+            </div>
+            <div class="mn21" onmouseout="this.className='mn21'" onmouseover="this.className='mn22'" onclick="location.href='http://kr.yahoo.com'">
+              <font color="blue">├─</font> 봉사
+            </div>
+            <div class="mn21" onmouseout="this.className='mn21'" onmouseover="this.className='mn22'" onclick="location.href='http://kr.yahoo.com'">
+              <font color="blue">├─</font> 미술
+            </div>
+            <div class="mn21" onmouseout="this.className='mn21'" onmouseover="this.className='mn22'" onclick="location.href='http://kr.yahoo.com'">
+              <font color="blue">├─</font> 체육
+            </div>
+            <div class="mn21" onmouseout="this.className='mn21'" onmouseover="this.className='mn22'" onclick="location.href='http://kr.yahoo.com'">
+              <font color="blue">├─</font> 사회
+            </div>
+            <div class="mn21" onmouseout="this.className='mn21'" onmouseover="this.className='mn22'">
+              <font color="blue">└─</font> 음악
+            </div>
+
+          </DIV>
+
+        </td></tr></table>
+      </div>
+      <!-- calendar -->
+      <div class="col-md-9">
+
+          <div class="col-sm-12 text-center">
+            <h2>동아리 달력</h2>
+          </div>
+  
+
+        <div class="row">
+
+          <div class="span12 col-md-12">
+            <p>동아리 리크루팅</p>
+      		<table class="table-condensed table-bordered table-striped col-sm-12">
+                  <thead>
+                      <tr>
+                        <th colspan="7">
+                          <span class="btn-group">
+                              <a class="btn"><i class="icon-chevron-left"></i></a>
+                              
+                          	<a class="btn active">August 2017</a>
+                          	<a class="btn"><i class="icon-chevron-right"></i></a>
+                          </span>
+                        </th>
+                      </tr>
+                      <tr>
+                          <th>Su</th>
+                          <th>Mo</th>
+                          <th>Tu</th>
+                          <th>We</th>
+                          <th>Th</th>
+                          <th>Fr</th>
+                          <th>Sa</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td class="muted">29</td>
+                          <td class="muted">30</td>
+                          <td class="muted">31</td>
+                          <td id="td1" onClick="clicked(this)">1</td>
+                          <td id="td2" onClick="clicked(this)">2</td>
+                          <td id="td3" onClick="clicked(this)">3</td>
+                          <!-- 각 칸마다 크기 안변하게 -->
+                          <td id="td4" onClick="clicked(this)">4<br>자바&안드로이드<br>2:30~6:00</td>
+                      </tr>
+                      <tr>
+                          <td id="td5" onClick="clicked(this)">5</td>
+                          <td id="td6" onClick="clicked(this)">6</td>
+                          <td id="td7" onClick="clicked(this)">7</td>
+                          <td id="td8" onClick="clicked(this)">8</td>
+                          <td id="td9" onClick="clicked(this)">9</td>
+                          <td id="td10" onClick="clicked(this)">10</td>
+                          <td id="td11" onClick="clicked(this)">11</td>
+                      </tr>
+                      <tr>
+                          <td>12</td>
+                          <td>13</td>
+                          <td>14</td>
+                          <td>15</td>
+                          <td>16</td>
+                          <td>17</td>
+                          <td>18</td>
+                      </tr>
+                      <tr>
+                          <td>19</td>
+                          <td class="btn-primary"><strong>20</strong></td>
+                          <td>21</td>
+                          <td>22</td>
+                          <td>23</td>
+                          <td>24</td>
+                          <td>25</td>
+                      </tr>
+                      <tr>
+                          <td>26</td>
+                          <td>27</td>
+                          <td>28</td>
+                          <td>29</td>
+                          <td class="muted">1</td>
+                          <td class="muted">2</td>
+                          <td class="muted">3</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+
+          <div class="span12 col-md-12">
+            <p>동아리 행사</p>
+      		<table class="table-condensed table-bordered table-striped col-sm-12">
+                  <thead>
+                      <tr>
+                        <th colspan="7">
+                          <span class="btn-group">
+                              <a class="btn"><i class="icon-chevron-left"></i></a>
+                          	<a class="btn active">August 2017</a>
+                          	<a class="btn"><i class="icon-chevron-right"></i></a>
+                          </span>
+                        </th>
+                      </tr>
+                      <tr>
+                          <th>Su</th>
+                          <th>Mo</th>
+                          <th>Tu</th>
+                          <th>We</th>
+                          <th>Th</th>
+                          <th>Fr</th>
+                          <th>Sa</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td class="muted">29</td>
+                          <td class="muted">30</td>
+                          <td class="muted">31</td>
+                          <td>1</td>
+                          <td>2</td>
+                          <td>3</td>
+                          <td>4</td>
+                      </tr>
+                      <tr>
+                          <td>5</td>
+                          <td>6</td>
+                          <td>7</td>
+                          <td>8</td>
+                          <td>9</td>
+                          <td>10</td>
+                          <td>11</td>
+                      </tr>
+                      <tr>
+                          <td>12</td>
+                          <td>13</td>
+                          <td>14</td>
+                          <td>15</td>
+                          <td>16</td>
+                          <td>17</td>
+                          <td>18</td>
+                      </tr>
+                      <tr>
+                          <td>19</td>
+                          <td class="btn-primary"><strong>20</strong></td>
+                          <td onclick="">21</td>
+                          <td>22</td>
+                          <td>23</td>
+                          <td>24</td>
+                          <td>25</td>
+                      </tr>
+                      <tr>
+                          <td>26</td>
+                          <td>27</td>
+                          <td>28</td>
+                          <td>29</td>
+                          <td class="muted">1</td>
+                          <td class="muted">2</td>
+                          <td class="muted">3</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+
+  <!-- jQuery -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+
+  <!-- Bootstrap Core JavaScript -->
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+  <!-- Contact Form JavaScript -->
+  <script src="js/jqBootstrapValidation.js"></script>
+  <script src="js/contact_me.js"></script>
+
+  <!-- Theme JavaScript -->
+  <script src="js/freelancer.min.js"></script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!-- 동아리 등록페이지 -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> 동아리 등록 </title>
+    </head>
+    <body>
+        <filedset>
+            <legend>작성하기</legend>
+            <form action="/club/create_done">
+                <strong>동아리명</strong>
+                <input type="text" name="name" /><br>
+                
+                <strong>동아리소속</strong><br>
+                <input type="radio" name="belonging"> 중앙동아리
+                <input type="radio" name="belonging"> 애기능동아리
+                <input type="radio" name="belonging"> 운동부
+                <input type="radio" name="belonging"> 학과소속
+                <input type="radio" name="belonging"> 기타 <input type="text" /><br>
+                
+                <strong>분과</strong><br>
+                <input type="radio" name="cat"> 예술
+                <input type="radio" nmae="cat"> 학문
+                <input type="radio" name="cat"> 사회
+                <input type="radio" name="cat"> 문화
+                <input type="radio" name="cat"> 언어
+                <input type="radio" name="cat"> 종교
+                <input type="radio" name="cat"> 체육
+                <br>
+                
+                <strong>학과제한</strong><br>
+                <input type="radio" name="limit_deptm"> 있음 
+                <input type="radio" name="limit_deptm"> 없음
+                <br>
+                
+                <strong>학번제한</strong><br>
+                <input type="radio" name="limit_stunum"> 신입생만 가능
+                <input type="radio" name="limit_stunum"> 없음
+                <input type="radio" name="limit_stunum"> 기타 <input type="text" /><br>
+                
+                <strong>필수활동기간</strong><br>
+                <input type="radio" name="mustdo"> 없음
+                <input type="radio" name="mustdo"> 한 학기 이상
+                <input type="radio" name="mustdo"> 두 학기 이상
+                <input type="radio" name="mustdo"> 기타 <input type="text" /><br>
+                
+                <strong>활동빈도</strong><br>
+                <input type="radio" name="freq"> 자유
+                <input type="radio" name="freq"> 주 1회 필수
+                <input type="radio" name="freq"> 주 2회 필수
+                <input type="radio" name="freq"> 주 3회 필수
+                <input type="radio" name="freq"> 기타 <input type="text" /><br>
+                
+                <strong>창설연도</strong>
+                <input type="text" name="estab" /><br><br>
+                
+                <strong>동아리 설명</strong><br>
+                <textarea name="cont"></textarea>
+                <br>
+                
+                <input type="submit" value="등록" />
+                
+            </form>
+            
+        </filedset>
+        
+        
+    </body>
+    
+    
+</html>

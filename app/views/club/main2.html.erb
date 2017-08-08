@@ -67,11 +67,57 @@
         }
     
         function myPage(){
-            var popup = document.getElementById("cal_detail");
+            var popup = document.getElementById("myPage");
             popup.classList.toggle("show");
         }
+        
+        function windowLogin()
+        {
+            <% if user_signed_in? %>
+            <% else %>
+                location.htef="/users/sign_in"
+            <% end %>
+        }
     //-->
+    
+    
   </script>
+  <style>
+    .popup .cal_pop_name{
+        font-size:14pt;
+        font-weight:bold;
+    }
+    .popup .cal_pop {
+        position: relative;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #d9d9d9 #bfbfbf #b6b6b6 #d5d5d5;
+        background: #fff;
+        box-shadow: 1px 2px 1px rgba(0,0,0,0.1);
+    }
+    .popup .cal_pop_wrap{
+        visibility:hidden;
+        position:absolute;
+    }
+
+    .popup .show{
+        visibility:visible;
+    }
+    .popup{
+      
+    }
+    dl {
+        display: block;
+        -webkit-margin-before: 1em;
+        -webkit-margin-after: 1em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+    }
+    dd {
+        display: block;
+        -webkit-margin-start: 40px;
+    }
+  </style>
   
   <!-- 동아리 검색 -->
   <style>
@@ -85,53 +131,7 @@
 
 <body id="page-top" class="index">
 
-    <!-- Navigation -->
-    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand page-scroll" href="#page-top">KU Club</a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#calendars">Calendar</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#club">Club</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#about">About</a>
-                    </li>
-                    <li>
-                        <% if user_signed_in? %>
-                            <a href="/users/sign_out">Log out</a>
-                        <% else %>
-                            <a class="page-scroll" href="#" onClick="window.open('https://godong-kwonsoonkyu.c9users.io/users/sign_in','zbMemberJoin','width=350,height=300,toolbars=no,resizable=no,scrollbars=yes')">Log in</a>
-                        <% end %>
-                    </li>
-                    <li>
-                        <% if user_signed_in? %>
-                            <a class="page-scroll" href="">My Page</a> <!-- 내 아이디와 관리자 권한 표시하는 작은 창 띄우기 (current_user.email, current_user.admin) -->
-                        <% else %>
-                            <a class="page-scroll" href=""></a> <!-- 로그아웃 상태일 땐 어떤 탭을 보여줄지 -->
-                        <% end %>
-                    </li>
-                    
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
+    
 
     <!-- Header -->
     <header>
@@ -168,7 +168,7 @@
                 </div>
                 <div class="col-md-4">
                     <span class="fa-stack fa-4x">
-                        <a href="club/calendar">
+                        <a href="club/calendar_event">
                             <i class="fa fa-circle fa-stack-2x text-primary"></i>
                             <i class="fa fa-calendar fa-stack-1x fa-inverse"></i>
                         </a>
@@ -178,7 +178,7 @@
                 </div>
                 <div class="col-md-4">
                     <span class="fa-stack fa-4x">
-                        <a href="club/calendar">
+                        <a href="club/calendar_recruit">
                             <i class="fa fa-circle fa-stack-2x text-primary"></i>
                             <i class="fa fa-calendar fa-stack-1x fa-inverse"></i>
                         </a>
@@ -713,6 +713,32 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="popup">
+        <div class="cal_pop_wrap" id="myPage" style="display: block; left: 80%; top: 5%; z-index: 32001;">
+            <div class="cal_pop">
+                <div class="cal_pop_head">
+                    <span class="cal_pop_name">My Page</span>
+                </div>
+                <div class="cal_pop_contents">
+                    <dl>
+                        <dt>이메일</dt>
+                        <% if user_signed_in? %>
+                        <dd><p><%= current_user.email %></p></dd>
+                        <dt>권한</dt>
+                        <% if current_user.admin? %>
+                            <dd><p>동아리</p></dd>
+                        <% else %>
+                            <dd><p>개인</p></dd>
+                        <% end %>
+                    <% end %>
+                    </dl>
+                </div>
+            </div>
+            <div class="cal_pop_bg">
+            </div>
+        </div>  
     </div>
 
     <!-- jQuery -->

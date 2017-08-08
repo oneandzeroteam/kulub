@@ -1,21 +1,8 @@
 <html>
   <head>
-    <script>
-$form = $("#submit-form"); 
-$form.on("submit",function()
-{
-   alert("submitting..");
-   //do ajax
-   $.ajax({
-       url:<submit url>,
-       type:post,
-       success:function() {
-           location.reload();
-       }
-   });
-});
-$form.submit();
-</script>
+    <script language="javascript">
+      
+    </script>
   </head>
 </html>
 
@@ -45,8 +32,8 @@ $form.submit();
     </div>
   <% end -%>
 
-  <div class="actions">
-    <%= f.submit "로그인" %>
+  <div class="actions" onClick="submit();">
+    <%= f.submit "로그인", :name => 'login' %>
   </div>
 <% end %>
 

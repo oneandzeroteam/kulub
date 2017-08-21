@@ -1,0 +1,44 @@
+.pull-right{
+	float:right;
+}
+
+header{
+	width:auto;
+	height:inherit;
+}
+
+.header{
+	
+}
+
+a{
+	text-decoration:none!important;
+	color:black!important;
+}
+
+ul>li{
+	list-style:none;
+	text-align:justify;
+	font-size:1.2em;
+	margin-bottom:10px;
+}
+
+#body-menu{
+	border:black 1px solid;
+	height:65%;
+	white-space:nowrap;
+	overflow-x:auto;
+}
+
+#body-menu > div {
+	display:inline-block;
+}
+
+#left-menu{
+	height:100%;
+	border-right:black 1px solid;
+}
+
+footer{
+	margin-top:40px;
+}

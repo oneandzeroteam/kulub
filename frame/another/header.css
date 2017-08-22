@@ -1,0 +1,33 @@
+body{
+	margin:0px;
+}
+.HeaderWrap{
+	padding-left:15%;
+	padding-right:10%;
+	background-color:aliceblue;
+}
+ul{
+	overflow:hidden;
+	list-style-type:none;
+	margin:0px;
+}
+ul>li, span>li{
+	padding:8px;
+	line-height:50px;
+	
+}
+ul>li{
+	float:left;
+}
+span>li{
+	float:right;
+}
+li>img{
+	height:71.5px;
+	vertical-align:middle;
+	width:auto;
+}
+li>h2{
+	font-size:0.8em;
+	vertical-align: middle;
+}	

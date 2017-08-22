@@ -1,0 +1,33 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+@import url(http://fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+.ContentWrap{
+	padding-top:7%;
+	padding-left:15%;
+	padding-right:15%;
+	padding-bottom:50px;
+	text-align:center;
+	background-color:white;
+}
+.HotClub{
+	text-align:left;
+	font-size:1em;
+	font-family:'Nanum Pen Script';
+}
+ol{
+	list-style-type:none;
+	float:left;
+}
+ol>li{
+	text-align:center;
+}
+ol>li>img{
+	height:300px;
+	width:300px;
+}
+li>h3{
+	text-align:center;
+	font-family:'Jeju Hanllasan';
+	font-size:1.2em;
+	margin-bottom:0px;
+	margin-top:0px;
+}

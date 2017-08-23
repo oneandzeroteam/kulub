@@ -11,43 +11,43 @@
     <FrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_weight="1">
 
         <include
             android:id="@+id/include_home"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:visibility="visible"
-            layout="@layout/home_layout"/>
+            layout="@layout/home_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible" />
 
         <include
             android:id="@+id/include_search"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:visibility="invisible"
-            layout="@layout/search_layout"/>
+            layout="@layout/search_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible" />
 
         <include
             android:id="@+id/include_schedule"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:visibility="invisible"
-            layout="@layout/schedule_layout"/>
+            layout="@layout/schedule_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible" />
 
         <include
             android:id="@+id/include_register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"
-            layout="@layout/register_layout" />
+            layout="@layout/register_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible" />
 
         <include
             android:id="@+id/include_my_page"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:visibility="invisible"
-            layout="@layout/my_page_layout"/>
+            layout="@layout/my_page_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible" />
 
     </FrameLayout>
 

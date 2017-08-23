@@ -1,5 +1,6 @@
 package com.example.android.kulub;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -86,5 +87,10 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setSelectedItemId(R.id.navigation_home);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
+    public void goClub(View v){
+        Intent i = new Intent(MainActivity.this, RegisterActivity.class);
+        startActivity(i);
     }
 }

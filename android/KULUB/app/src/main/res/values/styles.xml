@@ -8,4 +8,22 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="schedulerDay">
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_rowWeight">0</item>
+        <item name="android:background">@drawable/scheduler_border</item>
+    </style>
+    <style name="scheduler">
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_rowWeight">1</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/scheduler_border</item>
+    </style>
+
 </resources>

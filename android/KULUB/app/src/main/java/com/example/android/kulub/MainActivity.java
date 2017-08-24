@@ -8,8 +8,11 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import static android.R.attr.id;
 
@@ -20,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private ConstraintLayout myPageLayout;
     private ConstraintLayout registerLayout;
     private ConstraintLayout searchLayout;
+    private GridView schedulerGridView;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -87,6 +91,11 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setSelectedItemId(R.id.navigation_home);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        schedulerGridView = (GridView)findViewById(R.id.scheduler_grid_view);
+        ArrayList<Scheduler> schedulerList = new ArrayList<Scheduler>();
+        schedulerList.add(new Scheduler(1));
+        SchedulerAdapter schedulerAdapter = new SchedulerAdapter(this, schedulerList);
+        schedulerGridView.setAdapter(schedulerAdapter);
     }
 
     public void goClub(View v){

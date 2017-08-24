@@ -10,6 +10,7 @@ ul{
 	overflow:hidden;
 	list-style-type:none;
 	margin:0px;
+	padding-left:0px;
 }
 ul>li, span>li{
 	padding:8px;
@@ -18,6 +19,7 @@ ul>li, span>li{
 }
 ul>li{
 	float:left;
+	cursor:pointer;
 }
 span>li{
 	float:right;
@@ -31,3 +33,47 @@ li>h2{
 	font-size:0.8em;
 	vertical-align: middle;
 }	
+.SearchInput{
+	position:relative;
+	margin-top:20px;
+	margin-bottom:20px;
+}
+.SearchInput span{
+	display:inline-block;
+	height:50px;
+	width:400px;
+	background-color:aquamarine;
+	border-radius:15px;
+}
+.SearchInput input{
+	padding-left:20px;
+	height:50px;
+	width:350px;
+	border: none;
+	border-radius:15px;
+	background-color:aquamarine;
+}
+.SearchInput button{
+	border:none;
+	background:none;
+}
+.DropDown{
+	position:absolute;
+	left:-10000;
+	border:0px;
+	margin:0px;
+	background:aliceblue;
+}
+.DropDown li{
+	float:none;
+	padding-left:16px;
+	padding-right:16px;
+	padding-top:0px;
+	padding-bottom:0px;
+}
+.DropDown li h2{
+	margin:0px;
+}
+.DropDown li:hover{
+	border-left:solid 10px beige;
+}

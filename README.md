@@ -8,3 +8,7 @@
 - 박정훈
 - 조건호
 - 전태현
+
+
+repository 변경
+https://github.com/rhino08/kulub
